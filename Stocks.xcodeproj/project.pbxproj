@@ -15,6 +15,9 @@
 		4CF99B9A26B1FC2700F20F2A /* TopStoriesNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF99B9926B1FC2700F20F2A /* TopStoriesNewsViewController.swift */; };
 		4CF99B9C26B1FC3300F20F2A /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF99B9B26B1FC3300F20F2A /* SearchResultsViewController.swift */; };
 		4CF99B9E26B1FC3D00F20F2A /* StockDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF99B9D26B1FC3D00F20F2A /* StockDetailsViewController.swift */; };
+		4CF99BA026B1FE4900F20F2A /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF99B9F26B1FE4900F20F2A /* APICaller.swift */; };
+		4CF99BA226B1FE5E00F20F2A /* PersistanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF99BA126B1FE5E00F20F2A /* PersistanceManager.swift */; };
+		4CF99BA426B1FE6D00F20F2A /* HapticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF99BA326B1FE6D00F20F2A /* HapticsManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +31,9 @@
 		4CF99B9926B1FC2700F20F2A /* TopStoriesNewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopStoriesNewsViewController.swift; sourceTree = "<group>"; };
 		4CF99B9B26B1FC3300F20F2A /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
 		4CF99B9D26B1FC3D00F20F2A /* StockDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailsViewController.swift; sourceTree = "<group>"; };
+		4CF99B9F26B1FE4900F20F2A /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
+		4CF99BA126B1FE5E00F20F2A /* PersistanceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceManager.swift; sourceTree = "<group>"; };
+		4CF99BA326B1FE6D00F20F2A /* HapticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +105,9 @@
 		4CF99B9726B1FB9A00F20F2A /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				4CF99B9F26B1FE4900F20F2A /* APICaller.swift */,
+				4CF99BA126B1FE5E00F20F2A /* PersistanceManager.swift */,
+				4CF99BA326B1FE6D00F20F2A /* HapticsManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -182,12 +191,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CF99BA426B1FE6D00F20F2A /* HapticsManager.swift in Sources */,
 				4CF99B9E26B1FC3D00F20F2A /* StockDetailsViewController.swift in Sources */,
 				4CF99B8526B1FB4400F20F2A /* WatchListViewController.swift in Sources */,
 				4CF99B9A26B1FC2700F20F2A /* TopStoriesNewsViewController.swift in Sources */,
+				4CF99BA026B1FE4900F20F2A /* APICaller.swift in Sources */,
 				4CF99B8126B1FB4400F20F2A /* AppDelegate.swift in Sources */,
 				4CF99B8326B1FB4400F20F2A /* SceneDelegate.swift in Sources */,
 				4CF99B9C26B1FC3300F20F2A /* SearchResultsViewController.swift in Sources */,
+				4CF99BA226B1FE5E00F20F2A /* PersistanceManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
