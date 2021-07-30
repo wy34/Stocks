@@ -7,23 +7,58 @@
 
 import UIKit
 
-class SearchResultsViewController: UIViewController {
+protocol SearchResultsViewControllerDelegate: AnyObject {
+    func searchResultsControllerDidSelect(searchResult: String)
+}
 
+class SearchResultsViewController: UIViewController {
+    // MARK: - Properties
+    weak var delegate: SearchResultsViewControllerDelegate?
+    
+    private var results = [String]()
+    
+    // MARK: - Views
+    private lazy var tableView: UITableView = {
+        let tv = UITableView()
+        tv.register(SearchResultTableViewCell.self, forCellReuseIdentifier: SearchResultTableViewCell.reuseId)
+        tv.delegate = self
+        tv.dataSource = self
+        return tv
+    }()
+    
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        setupUI()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    // MARK: - Helpers
+    private func setupUI() {
+        view.addSubview(tableView)
+        tableView.fill(superView: view)
     }
-    */
+    
+    func update(with results: [String]) {
+        self.results = results
+        tableView.reloadData()
+    }
+}
 
+// MARK: -
+extension SearchResultsViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 100
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: SearchResultTableViewCell.reuseId, for: indexPath) as! SearchResultTableViewCell
+        cell.textLabel?.text = "AAPL"
+        cell.detailTextLabel?.text = "Apple Inc."
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        delegate?.searchResultsControllerDidSelect(searchResult: "AAPL")
+    }
 }
