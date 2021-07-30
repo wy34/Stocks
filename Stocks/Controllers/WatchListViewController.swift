@@ -15,12 +15,22 @@ class WatchListViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupTitleView()
         configureUI()
         layoutUI()
         setupSearchController()
     }
 
     // MARK: - Helpers
+    private func setupTitleView() {
+        let titleView = UIView(frame: .init(x: 0, y: 0, width: view.width, height: navigationController?.navigationBar.height ?? 100))
+        let label = UILabel(frame: .init(x: 10, y: 0, width: titleView.width, height: titleView.height))
+        label.text = "Stocks"
+        label.font = .systemFont(ofSize: 30, weight: .black)
+        titleView.addSubview(label)
+        navigationItem.titleView = titleView
+    }
+    
     private func configureUI() {
         view.backgroundColor = .systemBackground
     }

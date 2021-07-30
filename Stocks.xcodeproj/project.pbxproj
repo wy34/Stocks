@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4CE383E626B4907D005D7140 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE383E526B4907D005D7140 /* Extensions.swift */; };
 		4CF99B8126B1FB4400F20F2A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF99B8026B1FB4400F20F2A /* AppDelegate.swift */; };
 		4CF99B8326B1FB4400F20F2A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF99B8226B1FB4400F20F2A /* SceneDelegate.swift */; };
 		4CF99B8526B1FB4400F20F2A /* WatchListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF99B8426B1FB4400F20F2A /* WatchListViewController.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4CE383E526B4907D005D7140 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		4CF99B7D26B1FB4400F20F2A /* Stocks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stocks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CF99B8026B1FB4400F20F2A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4CF99B8226B1FB4400F20F2A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				4CF99B8026B1FB4400F20F2A /* AppDelegate.swift */,
 				4CF99B8226B1FB4400F20F2A /* SceneDelegate.swift */,
 				4CF99B8926B1FB4600F20F2A /* Assets.xcassets */,
+				4CE383E526B4907D005D7140 /* Extensions.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -196,6 +199,7 @@
 				4CF99B8526B1FB4400F20F2A /* WatchListViewController.swift in Sources */,
 				4CF99B9A26B1FC2700F20F2A /* TopStoriesNewsViewController.swift in Sources */,
 				4CF99BA026B1FE4900F20F2A /* APICaller.swift in Sources */,
+				4CE383E626B4907D005D7140 /* Extensions.swift in Sources */,
 				4CF99B8126B1FB4400F20F2A /* AppDelegate.swift in Sources */,
 				4CF99B8326B1FB4400F20F2A /* SceneDelegate.swift in Sources */,
 				4CF99B9C26B1FC3300F20F2A /* SearchResultsViewController.swift in Sources */,
