@@ -46,7 +46,7 @@ class SearchResultsViewController: UIViewController {
     }
 }
 
-// MARK: -
+// MARK: - UITableViewDelegate, UITableViewDataSource
 extension SearchResultsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return results.count
