@@ -9,6 +9,7 @@ import UIKit
 
 class WatchListViewController: UIViewController {
     // MARK: - Properties
+    private var searchTimer: Timer?
     
     // MARK: - Views
     
@@ -55,13 +56,27 @@ extension WatchListViewController: UISearchResultsUpdating {
               let resultsVC = searchController.searchResultsController as? SearchResultsViewController,
               query.trimmingCharacters(in: .whitespaces) != "" else { return }
         
-        resultsVC.update(with: ["AAPL"])
+        searchTimer?.invalidate()
+        searchTimer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false, block: { _ in
+            APICaller.shared.search(query: query) { result in
+                switch result {
+                    case .success(let response):
+                        DispatchQueue.main.async {
+                            resultsVC.update(with: response.result)
+                        }
+                    case .failure(_):
+                        DispatchQueue.main.async {
+                            resultsVC.update(with: [])
+                        }
+                }
+            }
+        })
     }
 }
 
 // MARK: - SearchResultsViewControllerDelegate
 extension WatchListViewController: SearchResultsViewControllerDelegate {
-    func searchResultsControllerDidSelect(searchResult: String) {
-        print("slkfjsldfjlasjdfiwaeurio")
+    func searchResultsControllerDidSelect(searchResult: SearchResult) {
+        print(searchResult.description)
     }
 }

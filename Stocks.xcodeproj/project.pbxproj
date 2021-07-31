@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4CE383E626B4907D005D7140 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE383E526B4907D005D7140 /* UIView.swift */; };
 		4CE383E826B494E5005D7140 /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE383E726B494E5005D7140 /* SearchResultTableViewCell.swift */; };
+		4CE383EB26B4A575005D7140 /* SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE383EA26B4A575005D7140 /* SearchResponse.swift */; };
 		4CF99B8126B1FB4400F20F2A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF99B8026B1FB4400F20F2A /* AppDelegate.swift */; };
 		4CF99B8326B1FB4400F20F2A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF99B8226B1FB4400F20F2A /* SceneDelegate.swift */; };
 		4CF99B8526B1FB4400F20F2A /* WatchListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF99B8426B1FB4400F20F2A /* WatchListViewController.swift */; };
@@ -25,6 +26,7 @@
 /* Begin PBXFileReference section */
 		4CE383E526B4907D005D7140 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		4CE383E726B494E5005D7140 /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewCell.swift; sourceTree = "<group>"; };
+		4CE383EA26B4A575005D7140 /* SearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResponse.swift; sourceTree = "<group>"; };
 		4CF99B7D26B1FB4400F20F2A /* Stocks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stocks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CF99B8026B1FB4400F20F2A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4CF99B8226B1FB4400F20F2A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 		4CF99B9426B1FB7A00F20F2A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				4CE383EA26B4A575005D7140 /* SearchResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -213,6 +216,7 @@
 				4CF99BA026B1FE4900F20F2A /* APICaller.swift in Sources */,
 				4CE383E626B4907D005D7140 /* UIView.swift in Sources */,
 				4CF99B8126B1FB4400F20F2A /* AppDelegate.swift in Sources */,
+				4CE383EB26B4A575005D7140 /* SearchResponse.swift in Sources */,
 				4CF99B8326B1FB4400F20F2A /* SceneDelegate.swift in Sources */,
 				4CF99B9C26B1FC3300F20F2A /* SearchResultsViewController.swift in Sources */,
 				4CF99BA226B1FE5E00F20F2A /* PersistanceManager.swift in Sources */,
