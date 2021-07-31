@@ -8,11 +8,18 @@
 import UIKit
 
 class TopStoriesNewsViewController: UIViewController {
-
+    // MARK: - Properties
+    
+    // MARK: - Views
+    var tableView: UITableView = {
+        let tv = UITableView()
+        return tv
+    }()
+    
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
     
 

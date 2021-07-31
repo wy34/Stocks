@@ -70,4 +70,28 @@ extension UIView {
             leadingAnchor.constraint(equalTo: leading, constant: padLeading).isActive = true
         }
     }
+    
+    func setDimension(width: CGFloat? = nil, height: CGFloat? = nil) {
+        translatesAutoresizingMaskIntoConstraints = false
+        
+        if let width = width {
+            widthAnchor.constraint(equalToConstant: width).isActive = true
+        }
+        
+        if let height = height {
+            heightAnchor.constraint(equalToConstant: height).isActive = true
+        }
+    }
+    
+    func setDimension(width: NSLayoutDimension? = nil, height: NSLayoutDimension? = nil, wMult: CGFloat = 1, hMult: CGFloat = 1) {
+        translatesAutoresizingMaskIntoConstraints = false
+        
+        if let width = width {
+            widthAnchor.constraint(equalTo: width, multiplier: wMult).isActive = true
+        }
+        
+        if let height = height {
+            heightAnchor.constraint(equalTo: height, multiplier: hMult).isActive = true
+        }
+    }
 }
