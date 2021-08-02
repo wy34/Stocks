@@ -69,7 +69,7 @@ class NewsHeaderView: UITableViewHeaderFooterView {
     
     func configure(with viewModel: ViewModel) {
         label.text = viewModel.title
-        button.isHidden = !viewModel.shouldShowAddButton
+        button.isHidden = viewModel.shouldShowAddButton
     }
     
     // MARK: - Selectors

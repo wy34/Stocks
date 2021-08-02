@@ -53,7 +53,10 @@ class WatchListViewController: UIViewController {
     
     private func setupFloatingPanel() {
         let panel = FloatingPanelController(delegate: self)
-        panel.surfaceView.backgroundColor = .secondarySystemBackground
+        let customAppearace = SurfaceAppearance()
+        customAppearace.cornerRadius = 15
+        customAppearace.backgroundColor = .secondarySystemBackground
+        panel.surfaceView.appearance = customAppearace
         panel.addPanel(toParent: self)
         
         let vc = NewsViewController(type: .topStories)
