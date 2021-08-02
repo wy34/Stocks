@@ -35,6 +35,38 @@ extension UIView {
     }
 }
 
+// MARK: - Border
+enum Side {
+    case top, right, bottom, left
+}
+
+extension UIView {
+    func addBorder(side: Side, color: UIColor, thickness: CGFloat) {
+        let view = UIView()
+        view.backgroundColor = color
+        view.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(view)
+        
+        let topConstraint = view.topAnchor.constraint(equalTo: topAnchor)
+        let rightConstraint = view.trailingAnchor.constraint(equalTo: trailingAnchor)
+        let bottomConstraint = view.bottomAnchor.constraint(equalTo: bottomAnchor)
+        let leftConstraint = view.leadingAnchor.constraint(equalTo: leadingAnchor)
+        let heightConstraint = view.heightAnchor.constraint(equalToConstant: thickness)
+        let widthConstraint = view.widthAnchor.constraint(equalToConstant: thickness)
+        
+        switch side {
+        case .top:
+            NSLayoutConstraint.activate([leftConstraint, topConstraint, rightConstraint, heightConstraint])
+        case .right:
+            NSLayoutConstraint.activate([topConstraint, rightConstraint, bottomConstraint, widthConstraint])
+        case .bottom:
+            NSLayoutConstraint.activate([leftConstraint, bottomConstraint, rightConstraint, heightConstraint])
+        case .left:
+            NSLayoutConstraint.activate([topConstraint, leftConstraint, bottomConstraint, widthConstraint])
+        }
+    }
+}
+
 // MARK: - Anchor
 extension UIView {
     func addSubviews(_ views: UIView...) {

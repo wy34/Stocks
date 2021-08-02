@@ -48,6 +48,8 @@ class NewsViewController: UIViewController {
         tv.register(NewsHeaderView.self, forHeaderFooterViewReuseIdentifier: NewsHeaderView.reuseId)
         tv.register(NewsStoryTableViewCell.self, forCellReuseIdentifier: NewsStoryTableViewCell.reuseId)
         tv.backgroundColor = .clear
+        tv.tableFooterView = UIView()
+        tv.separatorStyle = .none
         return tv
     }()
     

@@ -58,18 +58,19 @@ class NewsHeaderView: UITableViewHeaderFooterView {
     // MARK: - Helpers
     private func configureUI() {
         contentView.backgroundColor = .secondarySystemBackground
+        label.addBorder(side: .bottom, color: .separator, thickness: 0.5)
     }
     
     private func layoutUI() {
         addSubviews(label, button)
-        label.anchor(top: topAnchor, trailing: trailingAnchor, bottom: bottomAnchor, leading: leadingAnchor, padTrailing: 14, padLeading: 14)
-        button.anchor(top: topAnchor, trailing: trailingAnchor, bottom: bottomAnchor, padTop: 16, padTrailing: 14, padBottom: 16)
+        label.anchor(top: topAnchor, trailing: trailingAnchor, bottom: bottomAnchor, leading: leadingAnchor, padTrailing: 14, padLeading: 16)
+        button.anchor(top: topAnchor, trailing: trailingAnchor, bottom: bottomAnchor, padTop: 16, padTrailing: 16, padBottom: 16)
         button.setDimension(width: widthAnchor, wMult: 0.28)
     }
     
     func configure(with viewModel: ViewModel) {
         label.text = viewModel.title
-        button.isHidden = !viewModel.shouldShowAddButton
+        button.isHidden = viewModel.shouldShowAddButton
     }
     
     // MARK: - Selectors

@@ -84,10 +84,10 @@ class NewsStoryTableViewCell: UITableViewCell {
         addSubviews(storyImageView, labelStackView)
         
         storyImageView.setDimension(width: widthAnchor, height: widthAnchor, wMult: 0.3, hMult: 0.3)
-        storyImageView.anchor(trailing: trailingAnchor, padTrailing: 14)
+        storyImageView.anchor(trailing: trailingAnchor, padTrailing: 16)
         storyImageView.center(y: centerYAnchor)
         
-        labelStackView.anchor(top: storyImageView.topAnchor, trailing: storyImageView.leadingAnchor, bottom: storyImageView.bottomAnchor, leading: leadingAnchor, padTrailing: 14, padLeading: 14)
+        labelStackView.anchor(top: storyImageView.topAnchor, trailing: storyImageView.leadingAnchor, bottom: storyImageView.bottomAnchor, leading: leadingAnchor, padTrailing: 14, padLeading: 16)
     }
     
     func configure(with viewModel: ViewModel) {
