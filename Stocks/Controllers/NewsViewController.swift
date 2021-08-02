@@ -25,7 +25,10 @@ class NewsViewController: UIViewController {
     
     var type: Type?
     
-    private var stories = [String]()
+    private var stories = [
+        NewsStory(category: "Tech", datetime: 3, headline: "Some headline should go here!", id: 0, image: "", related: "", source: "CNBC", summary: "", url: ""),
+        NewsStory(category: "Tech", datetime: 3, headline: "Some headline should go here!", id: 0, image: "", related: "", source: "CNBC", summary: "", url: "")
+    ]
     
     // MARK: - Init
     init(type: Type) {
@@ -43,7 +46,7 @@ class NewsViewController: UIViewController {
         tv.delegate = self
         tv.dataSource = self
         tv.register(NewsHeaderView.self, forHeaderFooterViewReuseIdentifier: NewsHeaderView.reuseId)
-        tv.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tv.register(NewsStoryTableViewCell.self, forCellReuseIdentifier: NewsStoryTableViewCell.reuseId)
         tv.backgroundColor = .clear
         return tv
     }()
@@ -64,11 +67,13 @@ class NewsViewController: UIViewController {
 // MARK: - UITableViewDelegate, UITableViewDataSource
 extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return stories.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: NewsStoryTableViewCell.reuseId, for: indexPath) as! NewsStoryTableViewCell
+        cell.configure(with: .init(model: stories[indexPath.row]))
+        return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

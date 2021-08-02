@@ -94,4 +94,16 @@ extension UIView {
             heightAnchor.constraint(equalTo: height, multiplier: hMult).isActive = true
         }
     }
+    
+    func center(x: NSLayoutXAxisAnchor? = nil, y: NSLayoutYAxisAnchor? = nil, paddingX: CGFloat = 0, paddingY: CGFloat = 0) {
+        translatesAutoresizingMaskIntoConstraints = false
+        
+        if let x = x {
+            centerXAnchor.constraint(equalTo: x, constant: paddingX).isActive = true
+        }
+        
+        if let y = y {
+            centerYAnchor.constraint(equalTo: y, constant: paddingY).isActive = true
+        }
+    }
 }

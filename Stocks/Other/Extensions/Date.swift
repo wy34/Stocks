@@ -7,18 +7,17 @@
 
 import Foundation
 
-extension DateFormatter {
-    static let newsDateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "YYYY-MM-DD"
-        return formatter
-    }()
-}
-
 extension Date {
-    func toString() -> String {
+    func toString(withFormat format: String) -> String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "YYYY-MM-DD"
+        formatter.dateFormat = format
+        return formatter.string(from: self)
+    }
+    
+    func toString(_ style: DateFormatter.Style) -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = style
         return formatter.string(from: self)
     }
 }
+

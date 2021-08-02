@@ -98,7 +98,7 @@ final class APICaller {
             case .company(symbol: let symbol):
                 let sevenDaysAgoDate = Date().addingTimeInterval(-(Constants.secondsInADay * 7))
                 let todaysDate = Date()
-                let url = url(for: .companyNews, queryParams: ["symbol": symbol, "from": sevenDaysAgoDate.toString(), "to": todaysDate.toString()])
+                let url = url(for: .companyNews, queryParams: ["symbol": symbol, "from": sevenDaysAgoDate.toString(withFormat: "YYYY-MM-DD"), "to": todaysDate.toString(withFormat: "YYYY-MM-DD")])
                 request(url: url, expecting: [NewsStory].self, completion: completion)
         }
     }
