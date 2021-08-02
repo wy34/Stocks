@@ -59,7 +59,7 @@ class WatchListViewController: UIViewController {
         panel.surfaceView.appearance = customAppearace
         panel.addPanel(toParent: self)
         
-        let vc = NewsViewController(type: .topStories)
+        let vc = NewsViewController(type: .company(symbol: "AAPL"))
         panel.set(contentViewController: vc)
         panel.track(scrollView: vc.tableView)
     }

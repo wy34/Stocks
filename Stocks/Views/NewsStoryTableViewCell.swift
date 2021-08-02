@@ -23,7 +23,7 @@ class NewsStoryTableViewCell: UITableViewCell {
             self.source = model.source
             self.headline = model.headline
             self.dateString = model.datetime.toDateString()
-            self.imageURL = nil
+            self.imageURL = URL(string: model.image)
         }
     }
     
@@ -37,7 +37,7 @@ class NewsStoryTableViewCell: UITableViewCell {
     private let headlineLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 20, weight: .black)
-        label.numberOfLines = 4
+        label.numberOfLines = 3
         return label
     }()
     
@@ -94,6 +94,6 @@ class NewsStoryTableViewCell: UITableViewCell {
         sourceLabel.text = viewModel.source
         headlineLabel.text = viewModel.headline
         dateLabel.text = viewModel.dateString
-        imageView?.sd_setImage(with: viewModel.imageURL, completed: nil)
+        storyImageView.sd_setImage(with: viewModel.imageURL, completed: nil)
     }
 }

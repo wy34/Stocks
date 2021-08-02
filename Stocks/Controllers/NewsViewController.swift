@@ -25,10 +25,7 @@ class NewsViewController: UIViewController {
     
     var type: Type?
     
-    private var stories = [
-        NewsStory(category: "Tech", datetime: 3, headline: "Some headline should go here!", id: 0, image: "", related: "", source: "CNBC", summary: "", url: ""),
-        NewsStory(category: "Tech", datetime: 3, headline: "Some headline should go here!", id: 0, image: "", related: "", source: "CNBC", summary: "", url: "")
-    ]
+    private var stories = [NewsStory]()
     
     // MARK: - Init
     init(type: Type) {
@@ -57,12 +54,30 @@ class NewsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         layoutUI()
+        fetchNews()
     }
     
     // MARK: - Helpers
     private func layoutUI() {
         view.addSubview(tableView)
         tableView.fill(superView: view)
+    }
+    
+    private func fetchNews() {
+        guard let type = type else { return }
+        APICaller.shared.news(for: type) { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+                case .success(let stories):
+                    DispatchQueue.main.async {
+                        self.stories = stories
+                        self.tableView.reloadData()
+                    }
+                case .failure(let error):
+                    print(error)
+            }
+        }
     }
 }
 
