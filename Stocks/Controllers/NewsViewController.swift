@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class NewsViewController: UIViewController {
     // MARK: - Properties
@@ -79,6 +80,13 @@ class NewsViewController: UIViewController {
             }
         }
     }
+    
+    private func open(_ urlString: String) {
+        guard let url = URL(string: urlString) else { present(title: "Failed To Open", message: "We were unable to open the article"); return }
+        
+        let safariController = SFSafariViewController(url: url)
+        present(safariController, animated: true, completion: nil)
+    }
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
@@ -109,5 +117,8 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        let storyURLString = stories[indexPath.row].url
+        open(storyURLString)
     }
 }

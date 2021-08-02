@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4CB25ACC26B887E300CB1F8A /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB25ACB26B887E300CB1F8A /* UIViewController.swift */; };
 		4CDDAF7126B79689007DA081 /* NewsStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDDAF7026B79689007DA081 /* NewsStory.swift */; };
 		4CDDAF7326B79A26007DA081 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDDAF7226B79A26007DA081 /* Date.swift */; };
 		4CDDAF7526B7A164007DA081 /* NewsStoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDDAF7426B7A164007DA081 /* NewsStoryTableViewCell.swift */; };
@@ -30,6 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4CB25ACB26B887E300CB1F8A /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		4CDDAF7026B79689007DA081 /* NewsStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsStory.swift; sourceTree = "<group>"; };
 		4CDDAF7226B79A26007DA081 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		4CDDAF7426B7A164007DA081 /* NewsStoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsStoryTableViewCell.swift; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 				4CE383E526B4907D005D7140 /* UIView.swift */,
 				4CDDAF7226B79A26007DA081 /* Date.swift */,
 				4CDDAF7626B7AE47007DA081 /* TimeInterval.swift */,
+				4CB25ACB26B887E300CB1F8A /* UIViewController.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -293,6 +296,7 @@
 			files = (
 				4CF99BA426B1FE6D00F20F2A /* HapticsManager.swift in Sources */,
 				4CDDAF7326B79A26007DA081 /* Date.swift in Sources */,
+				4CB25ACC26B887E300CB1F8A /* UIViewController.swift in Sources */,
 				4CE383E826B494E5005D7140 /* SearchResultTableViewCell.swift in Sources */,
 				4CDDAF7726B7AE47007DA081 /* TimeInterval.swift in Sources */,
 				4CF99B9E26B1FC3D00F20F2A /* StockDetailsViewController.swift in Sources */,
