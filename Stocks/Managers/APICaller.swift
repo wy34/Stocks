@@ -22,6 +22,7 @@ final class APICaller {
         case search
         case topStories = "news"
         case companyNews = "company-news"
+        case marketData = "stock/candle"
     }
     
     private enum APIError: Error {
@@ -101,5 +102,13 @@ final class APICaller {
                 let url = url(for: .companyNews, queryParams: ["symbol": symbol, "from": sevenDaysAgoDate.toString(withFormat: "YYYY-MM-dd"), "to": todaysDate.toString(withFormat: "YYYY-MM-dd")])
                 request(url: url, expecting: [NewsStory].self, completion: completion)
         }
+    }
+    
+    func marketData(for symbol: String, numberOfDays: TimeInterval = 7, completion: @escaping (Result<MarketDataResponse, Error>) -> Void) {
+        let sevenDaysAgoDate = Date().addingTimeInterval(-(Constants.secondsInADay * numberOfDays))
+        let todaysDate = Date()
+        
+        let url = url(for: .marketData, queryParams: ["symbol": symbol, "resolution": "1", "from": "\(Int(sevenDaysAgoDate.timeIntervalSince1970))", "to": "\(Int(todaysDate.timeIntervalSince1970))"])
+        request(url: url, expecting: MarketDataResponse.self, completion: completion)
     }
 }

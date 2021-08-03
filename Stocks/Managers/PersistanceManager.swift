@@ -12,17 +12,23 @@ final class PersistanceManager {
     static let shared = PersistanceManager()
     
     private struct Constants {
-        
+        static let onboardedKey = "hasOnboarded"
+        static let watchlistKey = "watchlist"
     }
     
     private let userDefaults: UserDefaults = .standard
     
     private var hasOnboard: Bool {
-        return false
+        return userDefaults.bool(forKey: Constants.onboardedKey)
     }
     
     var watchList: [String] {
-        return []
+        if !hasOnboard {
+            userDefaults.setValue(true, forKey: Constants.onboardedKey)
+            setupDefaults()
+        }
+        
+        return userDefaults.stringArray(forKey: Constants.watchlistKey) ?? []
     }
     
     // MARK: - Init
@@ -36,4 +42,26 @@ final class PersistanceManager {
     func removeFromWatchList() {
         
     }
+    
+    private func setupDefaults() {
+        let map = [
+            "AAPL": "Apple Inc",
+            "MSFT": "Microsoft Corporation",
+            "SNAP": "Snap Inc",
+            "GOOG": "Alphabet",
+            "AMZN": "Amazon.com, Inc",
+            "NKE": "Nike",
+            "NVDA": "Nvidia Inc"
+        ]
+        
+        let symbols = map.keys.map({ $0 })
+        userDefaults.setValue(symbols, forKey: Constants.watchlistKey)
+        
+        for (symbol, name) in map {
+            userDefaults.setValue(name, forKey: symbol)
+        }
+    }
 }
+
+// ["AAPL", "MSFT", ...]
+//  "AAPL": "Apple Inc", "MSFT": "Microsoft Corporation",
