@@ -39,8 +39,15 @@ final class PersistanceManager {
         
     }
     
-    func removeFromWatchList() {
+    func removeFromWatchList(symbol: String) {
+        var currentSymbols = watchList
         
+        if let index = currentSymbols.firstIndex(of: symbol) {
+            currentSymbols.remove(at: index)
+            userDefaults.setValue(currentSymbols, forKey: Constants.watchlistKey)
+        }
+        
+        userDefaults.removeObject(forKey: symbol)
     }
     
     private func setupDefaults() {

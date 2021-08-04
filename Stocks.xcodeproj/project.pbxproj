@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C06305226B9EF9A008AC90C /* UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C06305126B9EF9A008AC90C /* UIStackView.swift */; };
+		4C06305426B9F8BD008AC90C /* PaddedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C06305326B9F8BD008AC90C /* PaddedLabel.swift */; };
 		4CB25ACC26B887E300CB1F8A /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB25ACB26B887E300CB1F8A /* UIViewController.swift */; };
 		4CB25ACE26B8932E00CB1F8A /* MarketDataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB25ACD26B8932E00CB1F8A /* MarketDataResponse.swift */; };
 		4CB25AD026B89ABD00CB1F8A /* WatchListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB25ACF26B89ABD00CB1F8A /* WatchListTableViewCell.swift */; };
@@ -36,6 +38,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4C06305126B9EF9A008AC90C /* UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackView.swift; sourceTree = "<group>"; };
+		4C06305326B9F8BD008AC90C /* PaddedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddedLabel.swift; sourceTree = "<group>"; };
 		4CB25ACB26B887E300CB1F8A /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		4CB25ACD26B8932E00CB1F8A /* MarketDataResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketDataResponse.swift; sourceTree = "<group>"; };
 		4CB25ACF26B89ABD00CB1F8A /* WatchListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchListTableViewCell.swift; sourceTree = "<group>"; };
@@ -97,6 +101,7 @@
 				4CB25ACB26B887E300CB1F8A /* UIViewController.swift */,
 				4CB25AD326B8ECB900CB1F8A /* NumberFormatter.swift */,
 				4CB25AD526B8FA5700CB1F8A /* Double.swift */,
+				4C06305126B9EF9A008AC90C /* UIStackView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -146,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				4CF99B8B26B1FB4600F20F2A /* LaunchScreen.storyboard */,
+				4C06305326B9F8BD008AC90C /* PaddedLabel.swift */,
 				4CE383E726B494E5005D7140 /* SearchResultTableViewCell.swift */,
 				4CE383EE26B4FF05005D7140 /* NewsHeaderView.swift */,
 				4CDDAF7426B7A164007DA081 /* NewsStoryTableViewCell.swift */,
@@ -314,6 +320,7 @@
 				4CDDAF7326B79A26007DA081 /* Date.swift in Sources */,
 				4CB25ACC26B887E300CB1F8A /* UIViewController.swift in Sources */,
 				4CE383E826B494E5005D7140 /* SearchResultTableViewCell.swift in Sources */,
+				4C06305426B9F8BD008AC90C /* PaddedLabel.swift in Sources */,
 				4CDDAF7726B7AE47007DA081 /* TimeInterval.swift in Sources */,
 				4CF99B9E26B1FC3D00F20F2A /* StockDetailsViewController.swift in Sources */,
 				4CF99B8526B1FB4400F20F2A /* WatchListViewController.swift in Sources */,
@@ -328,6 +335,7 @@
 				4CE383EF26B4FF05005D7140 /* NewsHeaderView.swift in Sources */,
 				4CF99B8326B1FB4400F20F2A /* SceneDelegate.swift in Sources */,
 				4CB25AD426B8ECB900CB1F8A /* NumberFormatter.swift in Sources */,
+				4C06305226B9EF9A008AC90C /* UIStackView.swift in Sources */,
 				4CB25ACE26B8932E00CB1F8A /* MarketDataResponse.swift in Sources */,
 				4CF99B9C26B1FC3300F20F2A /* SearchResultsViewController.swift in Sources */,
 				4CB25AD226B89B9300CB1F8A /* StockChartView.swift in Sources */,

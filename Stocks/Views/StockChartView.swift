@@ -11,6 +11,11 @@ class StockChartView: UIView {
     // MARK: - Properties
     
     // MARK: - Views
+    struct ViewModel {
+        let data: [Double]
+        let showLegend: Bool
+        let showAxis: Bool
+    }
     
     // MARK: - Init
     override init(frame: CGRect) {
@@ -22,4 +27,11 @@ class StockChartView: UIView {
     }
     
     // MARK: - Helpers
+    func reset() {
+        
+    }
+    
+    func configure(with viewModel: ViewModel) {
+        
+    }
 }

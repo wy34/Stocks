@@ -22,6 +22,9 @@ class WatchListViewController: UIViewController {
         let tv = UITableView()
         tv.delegate = self
         tv.dataSource = self
+        tv.register(WatchListTableViewCell.self, forCellReuseIdentifier: WatchListTableViewCell.reuseId)
+        tv.tableFooterView = UIView()
+        tv.rowHeight = WatchListTableViewCell.preferredHeight
         return tv
     }()
     
@@ -33,7 +36,6 @@ class WatchListViewController: UIViewController {
         layoutUI()
         setupSearchController()
         setupFloatingPanel()
-        
         fetchWatchListData()
     }
 
@@ -52,7 +54,8 @@ class WatchListViewController: UIViewController {
     }
     
     private func layoutUI() {
-        
+        view.addSubview(tableView)
+        tableView.fill(superView: view)
     }
     
     private func setupSearchController() {
@@ -115,7 +118,8 @@ class WatchListViewController: UIViewController {
                     companyName: UserDefaults.standard.string(forKey: symbol) ?? "Company",
                     price: getLatestClosingPrice(from: candleSticks),
                     changeColor: changePercentage < 0 ? .systemRed : .systemGreen,
-                    changePercentage: changePercentage.formattedPercentString()
+                    changePercentage: changePercentage.formattedPercentString(),
+                    chartViewModel: .init(data: candleSticks.reversed().map({ $0.close }), showLegend: false, showAxis: false)
                 )
             )
         }
@@ -187,14 +191,31 @@ extension WatchListViewController: FloatingPanelControllerDelegate {
 // MARK: - UITableViewDelegate, UITableViewDataSource
 extension WatchListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return watchlistMap.count
+        return viewModels.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: WatchListTableViewCell.reuseId, for: indexPath) as! WatchListTableViewCell
+        cell.configure(with: viewModels[indexPath.row])
+        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let delete = UIContextualAction(style: .destructive, title: "") { [weak self] action, view, completion in
+            guard let self = self else { return }
+            let companyToRemove = self.viewModels[indexPath.row]
+            PersistanceManager.shared.removeFromWatchList(symbol: companyToRemove.symbol)
+            self.viewModels.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath], with: .fade)
+            completion(true)
+        }
+        
+        delete.image = UIImage(systemName: "trash")
+        
+        return UISwipeActionsConfiguration(actions: [delete])
     }
 }
