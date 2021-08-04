@@ -25,6 +25,8 @@ class WatchListViewController: UIViewController {
         tv.register(WatchListTableViewCell.self, forCellReuseIdentifier: WatchListTableViewCell.reuseId)
         tv.tableFooterView = UIView()
         tv.rowHeight = WatchListTableViewCell.preferredHeight
+        tv.contentInset = .init(top: 0, left: 0, bottom: 360, right: 0)
+        tv.scrollIndicatorInsets = .init(top: 0, left: 0, bottom: 360, right: 0)
         return tv
     }()
     
@@ -38,6 +40,7 @@ class WatchListViewController: UIViewController {
         setupNotificationObservers()
         setupFloatingPanel()
         fetchWatchListData()
+        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
     }
 
     deinit {
@@ -60,7 +63,7 @@ class WatchListViewController: UIViewController {
     
     private func layoutUI() {
         view.addSubview(tableView)
-        tableView.fill(superView: view)
+        tableView.anchor(top: view.topAnchor, trailing: view.trailingAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor)
     }
     
     private func setupSearchController() {
@@ -187,8 +190,8 @@ extension WatchListViewController: SearchResultsViewControllerDelegate {
     func searchResultsControllerDidSelect(searchResult: SearchResult) {
         navigationItem.searchController?.searchBar.resignFirstResponder()
         
-        let vc = StockDetailsViewController()
-        vc.navigationItem.title = searchResult.description
+        let vc = StockDetailsViewController(symbol: searchResult.displaySymbol, companyName: searchResult.description)
+        vc.navigationItem.title = searchResult.description.capitalized
         let navVC = UINavigationController(rootViewController: vc)
         present(navVC, animated: true, completion: nil)
     }
@@ -198,6 +201,17 @@ extension WatchListViewController: SearchResultsViewControllerDelegate {
 extension WatchListViewController: FloatingPanelControllerDelegate {
     func floatingPanelDidMove(_ fpc: FloatingPanelController) {
         navigationItem.titleView?.isHidden = fpc.state == .full
+        
+        var bottomInset: CGFloat = 0
+        
+        if fpc.state == .tip {
+            bottomInset = 70
+        } else if fpc.state == .half {
+            bottomInset = 360
+        }
+        
+        tableView.contentInset = .init(top: 0, left: 0, bottom: bottomInset, right: 0)
+        tableView.scrollIndicatorInsets = .init(top: 0, left: 0, bottom: bottomInset, right: 0)
     }
 }
 
@@ -215,6 +229,12 @@ extension WatchListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        let viewModel = viewModels[indexPath.row]
+        let vc = StockDetailsViewController(symbol: viewModel.symbol, companyName: viewModel.companyName, candleStickData: watchlistMap[viewModel.symbol] ?? [])
+        vc.navigationItem.title = viewModel.companyName
+        let navVC = UINavigationController(rootViewController: vc)
+        present(navVC, animated: true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
