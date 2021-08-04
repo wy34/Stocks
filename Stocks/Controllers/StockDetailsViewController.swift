@@ -23,7 +23,6 @@ class StockDetailsViewController: UIViewController {
         tv.register(NewsHeaderView.self, forHeaderFooterViewReuseIdentifier: NewsHeaderView.reuseId)
         tv.delegate = self
         tv.dataSource = self
-        tv.tableHeaderView = .init(frame: .init(x: 0, y: 0, width: view.width, height: view.width * 0.7 + 100))
         return tv
     }()
     
@@ -45,6 +44,7 @@ class StockDetailsViewController: UIViewController {
         configureUI()
         layoutUI()
         fetchNews()
+        fetchFinancialData()
     }
     
     // MARK: - Helpers
@@ -74,11 +74,34 @@ class StockDetailsViewController: UIViewController {
     }
     
     private func fetchFinancialData() {
+        let group = DispatchGroup()
         
+        if candleStickData.isEmpty {
+            group.enter()
+        }
+        
+        group.enter()
+        APICaller.shared.financialMetrics(for: symbol) { [weak self] result in
+            group.leave()
+            guard let self = self else { return }
+            switch result {
+                case .success(let response):
+                    let metrics = response.metric
+                    print(metrics)
+                case .failure(let error):
+                    print(error)
+            }
+        }
+        
+        group.notify(queue: .main) { [weak self] in
+            guard let self = self else { return }
+            self.renderChart()
+        }
     }
     
     private func renderChart() {
-        
+        let headerView = StockDetailHeaderView(frame: .init(x: 0, y: 0, width: view.width, height: view.width * 0.7 + 100))
+        tableView.tableHeaderView = headerView
     }
     
     // MARK: - Selector
