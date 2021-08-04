@@ -55,7 +55,7 @@ extension SearchResultsViewController: UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SearchResultTableViewCell.reuseId, for: indexPath) as! SearchResultTableViewCell
         cell.textLabel?.text = results[indexPath.row].displaySymbol
-        cell.detailTextLabel?.text = results[indexPath.row].description
+        cell.detailTextLabel?.text = results[indexPath.row].description.capitalized
         return cell
     }
     

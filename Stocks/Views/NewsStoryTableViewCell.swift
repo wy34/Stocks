@@ -11,7 +11,7 @@ import SDWebImage
 class NewsStoryTableViewCell: UITableViewCell {
     // MARK: - Properties
     static let reuseId = "NewsStoryTableViewCell"
-    static let preferredHeight = 140
+    static let preferredHeight: CGFloat = 140
     
     struct ViewModel {
         let source: String

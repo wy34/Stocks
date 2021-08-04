@@ -73,6 +73,10 @@ class NewsHeaderView: UITableViewHeaderFooterView {
         button.isHidden = !viewModel.shouldShowAddButton
     }
     
+    func hideAddToWatchListButton() {
+        button.isHidden = true
+    }
+    
     // MARK: - Selectors
     @objc private func didTapButton() {
         delegate?.newsHeaderViewDidTapAddButton(self)
