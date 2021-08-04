@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4C06305226B9EF9A008AC90C /* UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C06305126B9EF9A008AC90C /* UIStackView.swift */; };
 		4C06305426B9F8BD008AC90C /* PaddedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C06305326B9F8BD008AC90C /* PaddedLabel.swift */; };
+		4C06305626BA399E008AC90C /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C06305526BA399E008AC90C /* Notification.swift */; };
 		4CB25ACC26B887E300CB1F8A /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB25ACB26B887E300CB1F8A /* UIViewController.swift */; };
 		4CB25ACE26B8932E00CB1F8A /* MarketDataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB25ACD26B8932E00CB1F8A /* MarketDataResponse.swift */; };
 		4CB25AD026B89ABD00CB1F8A /* WatchListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB25ACF26B89ABD00CB1F8A /* WatchListTableViewCell.swift */; };
@@ -40,6 +41,7 @@
 /* Begin PBXFileReference section */
 		4C06305126B9EF9A008AC90C /* UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackView.swift; sourceTree = "<group>"; };
 		4C06305326B9F8BD008AC90C /* PaddedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddedLabel.swift; sourceTree = "<group>"; };
+		4C06305526BA399E008AC90C /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		4CB25ACB26B887E300CB1F8A /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		4CB25ACD26B8932E00CB1F8A /* MarketDataResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketDataResponse.swift; sourceTree = "<group>"; };
 		4CB25ACF26B89ABD00CB1F8A /* WatchListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchListTableViewCell.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				4CB25AD326B8ECB900CB1F8A /* NumberFormatter.swift */,
 				4CB25AD526B8FA5700CB1F8A /* Double.swift */,
 				4C06305126B9EF9A008AC90C /* UIStackView.swift */,
+				4C06305526BA399E008AC90C /* Notification.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -335,6 +338,7 @@
 				4CE383EF26B4FF05005D7140 /* NewsHeaderView.swift in Sources */,
 				4CF99B8326B1FB4400F20F2A /* SceneDelegate.swift in Sources */,
 				4CB25AD426B8ECB900CB1F8A /* NumberFormatter.swift in Sources */,
+				4C06305626BA399E008AC90C /* Notification.swift in Sources */,
 				4C06305226B9EF9A008AC90C /* UIStackView.swift in Sources */,
 				4CB25ACE26B8932E00CB1F8A /* MarketDataResponse.swift in Sources */,
 				4CF99B9C26B1FC3300F20F2A /* SearchResultsViewController.swift in Sources */,

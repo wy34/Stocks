@@ -35,8 +35,12 @@ final class PersistanceManager {
     private init() {}
     
     // MARK: - Helpers
-    func addToWatchList() {
-        
+    func addToWatchList(symbol: String, companyName: String) {
+        var currentSymbols = watchList
+        currentSymbols.append(symbol)
+        userDefaults.setValue(currentSymbols, forKey: Constants.watchlistKey)
+        userDefaults.setValue(companyName, forKey: symbol)
+        NotificationCenter.default.post(name: .didAddToWatchList, object: nil)
     }
     
     func removeFromWatchList(symbol: String) {

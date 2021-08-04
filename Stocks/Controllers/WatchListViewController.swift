@@ -35,10 +35,15 @@ class WatchListViewController: UIViewController {
         configureUI()
         layoutUI()
         setupSearchController()
+        setupNotificationObservers()
         setupFloatingPanel()
         fetchWatchListData()
     }
 
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     // MARK: - Helpers
     private func setupTitleView() {
         let titleView = UIView(frame: .init(x: 0, y: 0, width: view.width, height: navigationController?.navigationBar.height ?? 100))
@@ -66,6 +71,14 @@ class WatchListViewController: UIViewController {
         navigationItem.searchController = searchVC
     }
     
+    private func setupNotificationObservers() {
+        NotificationCenter.default.addObserver(forName: .didAddToWatchList, object: nil, queue: .main) { [weak self] _ in
+            guard let self = self else { return }
+            self.viewModels.removeAll()
+            self.fetchWatchListData()
+        }
+    }
+    
     private func setupFloatingPanel() {
         let panel = FloatingPanelController(delegate: self)
         let customAppearace = SurfaceAppearance()
@@ -84,7 +97,7 @@ class WatchListViewController: UIViewController {
         
         let group = DispatchGroup()
         
-        for symbol in symbols {
+        for symbol in symbols where watchlistMap[symbol] == nil {
             group.enter()
             APICaller.shared.marketData(for: symbol) { [weak self] result in
                 group.leave()
