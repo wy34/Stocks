@@ -9,6 +9,7 @@ import UIKit
 
 class StockDetailHeaderView: UIView {
     // MARK: - Properties
+    private var metricViewModels = [MetricCollectionViewCell.ViewModel]()
     
     // MARK: - Views
     private let chartView = StockChartView()
@@ -17,12 +18,12 @@ class StockDetailHeaderView: UIView {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.minimumInteritemSpacing = 0
-        layout.minimumLineSpacing = 0
+        layout.minimumLineSpacing = 16
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        cv.register(MetricCollectionViewCell.self, forCellWithReuseIdentifier: MetricCollectionViewCell.reuseId)
         cv.delegate = self
         cv.dataSource = self
-        cv.backgroundColor = .red
+        cv.backgroundColor = .secondarySystemBackground
         return cv
     }()
     
@@ -38,27 +39,39 @@ class StockDetailHeaderView: UIView {
     
     // MARK: - Helpers
     private func layoutUI() {
-        addSubview(collectionView)
-        collectionView.fill(superView: self)
+        addSubviews(chartView, collectionView)
+        
+        chartView.setDimension(width: widthAnchor, height: heightAnchor, hMult: 0.75)
+        chartView.anchor(top: topAnchor, leading: leadingAnchor)
+        
+        collectionView.setDimension(width: widthAnchor, height: heightAnchor, hMult: 0.25)
+        collectionView.anchor(bottom: bottomAnchor, leading: leadingAnchor)
     }
     
-    func configure(chartViewModel: StockChartView.ViewModel) {
-        
+    func configure(chartViewModel: StockChartView.ViewModel, metricViewModels: [MetricCollectionViewCell.ViewModel]) {
+        self.metricViewModels = metricViewModels
+        chartView.configure(with: chartViewModel)
+        collectionView.reloadData()
     }
 }
 
 // MARK: - UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
 extension StockDetailHeaderView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return metricViewModels.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MetricCollectionViewCell.reuseId, for: indexPath) as! MetricCollectionViewCell
+        cell.configure(with: metricViewModels[indexPath.item])
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: width/2, height: height/3)
+        return CGSize(width: (width-48)/2, height: (collectionView.height-16)/3)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return .init(top: 8, left: 16, bottom: 0, right: 16)
     }
 }

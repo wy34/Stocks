@@ -12,9 +12,10 @@ class StockDetailsViewController: UIViewController {
     // MARK: - Properties
     private let symbol: String
     private let companyName: String
-    private let candleStickData: [CandleStick]
+    private var candleStickData: [CandleStick]
     
     private var stories = [NewsStory]()
+    private var metrics: Metrics?
     
     // MARK: - Views
     private lazy var tableView: UITableView = {
@@ -78,6 +79,17 @@ class StockDetailsViewController: UIViewController {
         
         if candleStickData.isEmpty {
             group.enter()
+            APICaller.shared.marketData(for: symbol) { [weak self] result in
+                group.leave()
+                guard let self = self else { return }
+                switch result {
+                    case .success(let response):
+                        self.candleStickData = response.candleSticks
+                        print(self.candleStickData.count)
+                    case .failure(let error):
+                        print(error)
+                }
+            }
         }
         
         group.enter()
@@ -87,7 +99,7 @@ class StockDetailsViewController: UIViewController {
             switch result {
                 case .success(let response):
                     let metrics = response.metric
-                    print(metrics)
+                    self.metrics = metrics
                 case .failure(let error):
                     print(error)
             }
@@ -101,6 +113,17 @@ class StockDetailsViewController: UIViewController {
     
     private func renderChart() {
         let headerView = StockDetailHeaderView(frame: .init(x: 0, y: 0, width: view.width, height: view.width * 0.7 + 100))
+        
+        var viewModels = [MetricCollectionViewCell.ViewModel]()
+        if let metrics = metrics {
+            viewModels.append(.init(name: "52W High", value: "\(metrics.AnnualWeekHigh.roundToPlaces(2))"))
+            viewModels.append(.init(name: "52L High", value: "\(metrics.AnnualWeekLow.roundToPlaces(2))"))
+            viewModels.append(.init(name: "52W Return", value: "\(metrics.AnnualWeekPriceReturnDaily.roundToPlaces(2))"))
+            viewModels.append(.init(name: "Beta", value: "\(metrics.beta?.roundToPlaces(2) ?? 0.0)" == "0.0" ? "-" : "\(metrics.beta?.roundToPlaces(2) ?? 0.0)"))
+            viewModels.append(.init(name: "10D Vol.", value: "\(metrics.TenDayAverageTradingVolume.roundToPlaces(2))"))
+        }
+        
+        headerView.configure(chartViewModel: .init(data: candleStickData.reversed().map({ $0.close }), showLegend: false, showAxis: false), metricViewModels: viewModels)
         tableView.tableHeaderView = headerView
     }
     

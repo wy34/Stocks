@@ -15,4 +15,9 @@ extension Double {
     func formattedNumberString() -> String {
         return NumberFormatter.numberFormatter.string(from: .init(value: self)) ?? ""
     }
+    
+    func roundToPlaces(_ place: Int) -> Double {
+        let base = pow(10, Double(place))
+        return floor(self * base) / base
+    }
 }
