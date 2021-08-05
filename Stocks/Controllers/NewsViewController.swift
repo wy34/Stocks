@@ -117,7 +117,7 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
+        HapticsManager.shared.vibrateForSelection()
         let storyURLString = stories[indexPath.row].url
         open(storyURLString)
     }

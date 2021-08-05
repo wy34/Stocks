@@ -8,18 +8,19 @@
 import UIKit
 
 @main
+
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    /// Gets called when app launches
+    /// - Parameters:
+    ///   - application: App instance
+    ///   - launchOptions: Launch properties
+    /// - Returns: Bool for success or failure
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
-        debug()
         return true
     }
-
-    private func debug() {
-        
-    }
+    
     // MARK: UISceneSession Lifecycle
 
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {

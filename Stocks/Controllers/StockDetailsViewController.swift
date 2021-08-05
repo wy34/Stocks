@@ -181,6 +181,7 @@ extension StockDetailsViewController: UITableViewDelegate, UITableViewDataSource
 extension StockDetailsViewController: NewsHeaderViewDelegate {
     func newsHeaderViewDidTapAddButton(_ headerView: NewsHeaderView) {
         PersistanceManager.shared.addToWatchList(symbol: symbol, companyName: companyName)
+        HapticsManager.shared.vibrateForSelection()
         headerView.hideAddToWatchListButton()
         present(title: "Added to WatchList", message: "We've added \(companyName.capitalized) to your watchlist.")
     }

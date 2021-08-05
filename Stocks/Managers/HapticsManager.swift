@@ -5,7 +5,7 @@
 //  Created by William Yeung on 7/28/21.
 //
 
-import Foundation
+import UIKit
 
 final class HapticsManager {
     // MARK: - Properties
@@ -16,6 +16,14 @@ final class HapticsManager {
     
     // MARK: - Helpers
     func vibrateForSelection() {
-        
+        let generator = UISelectionFeedbackGenerator()
+        generator.prepare()
+        generator.selectionChanged()
+    }
+    
+    func vibrate(for type: UINotificationFeedbackGenerator.FeedbackType) {
+        let generator = UINotificationFeedbackGenerator()
+        generator.prepare()
+        generator.notificationOccurred(type)
     }
 }
