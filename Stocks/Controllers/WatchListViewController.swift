@@ -98,6 +98,8 @@ class WatchListViewController: UIViewController {
     private func fetchWatchListData() {
         let symbols = PersistanceManager.shared.watchList
         
+        createPlaceholderViewModels()
+        
         let group = DispatchGroup()
         
         for symbol in symbols where watchlistMap[symbol] == nil {
@@ -122,11 +124,21 @@ class WatchListViewController: UIViewController {
         }
     }
     
+    private func createPlaceholderViewModels() {
+        let symbols = PersistanceManager.shared.watchList.sorted(by: { $0 < $1 })
+        
+        symbols.forEach({ symbol in
+            viewModels.append(
+                .init(symbol: symbol, companyName: UserDefaults.standard.string(forKey: symbol) ?? "Company", price: "0.00", changeColor: .systemGreen, changePercentage: "0.00", chartViewModel: .init(data: [], showLegend: false, showAxis: false, fillColor: .clear))
+            )
+        })
+    }
+    
     private func createViewModels() {
         var viewModels = [WatchListTableViewCell.ViewModel]()
         
         for (symbol, candleSticks) in watchlistMap {
-            let changePercentage = getChangePercentage(for: candleSticks)
+            let changePercentage = candleSticks.getChangePercentage()
             
             viewModels.append(
                 .init(
@@ -140,23 +152,12 @@ class WatchListViewController: UIViewController {
             )
         }
  
-        self.viewModels = viewModels
+        self.viewModels = viewModels.sorted(by: { $0.symbol < $1.symbol })
     }
     
     private func getLatestClosingPrice(from data: [CandleStick]) -> String {
         guard let closingPrice = data.first?.close else { return "" }
         return closingPrice.formattedNumberString()
-    }
-    
-    private func getChangePercentage(for data: [CandleStick]) -> Double {
-        let latestDate = data[0].date
-        
-        guard let latestClose = data.first?.close,
-              let priorClose = data.first(where: { !Calendar.current.isDate($0.date, inSameDayAs: latestDate) })?.close else {
-            return 0
-        }
-        
-        return 1 - (priorClose / latestClose)
     }
 }
 
